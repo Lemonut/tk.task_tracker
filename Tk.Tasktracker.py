@@ -14,7 +14,11 @@ def delete_task():
     if selected_task:
         task_listbox.delete(selected_task)
     else:
-        messagebox.showwarning("Warning", "No task selected!")
+        selected_task_completed = completed_listbox.curselection()
+        if selected_task_completed:
+            completed_listbox.delete(selected_task_completed)
+        else:
+            messagebox.showwarning("Warning", "No task selected!")
 
 def mark_task_completed():
     selected_task = task_listbox.curselection()
@@ -50,14 +54,14 @@ completed_button.pack(pady=5)
 text2 = tk.Label(root, text="Task list:", bg="grey98", fg="LightSlateGray")
 text2.pack(pady=5)
 
-task_listbox = tk.Listbox(height=10, width=50, bg="LightSlateGray")
+task_listbox = tk.Listbox(height=10, width=50, bg="LightSlateGray", fg="white")
 task_listbox.pack(pady=10)
 
 # List of completed tasks
 text3 = tk.Label(root, text="Completed tasks:", bg="grey98", fg="LightSlateGray")
 text3.pack(pady=5)
 
-completed_listbox = tk.Listbox(height=10, width=50, bg="MediumSeaGreen", selectmode=tk.SINGLE)
+completed_listbox = tk.Listbox(height=10, width=50, bg="MediumSeaGreen", fg="white", selectmode=tk.SINGLE)
 completed_listbox.pack(pady=10)
 
 root.mainloop()
